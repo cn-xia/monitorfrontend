@@ -7,7 +7,8 @@ import NotFound from '@/pages/NotFound'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',  
+  mode: 'history',
+  base: '/monitor',  
   routes: [
     {
       path:'/',
