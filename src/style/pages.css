@@ -1,0 +1,126 @@
+/*-----pages------*/
+
+.page-content{
+    height: 660px;
+    box-sizing: border-box;
+    padding: 30px 10px;
+}
+
+
+
+.cp-mid-line{
+    height:580px;
+    width:5px;
+    background:#918a8a;
+    border-radius: 5px;
+}
+
+.cp-form{
+    width: 540px;
+    margin:70px 30px;
+    padding: 20px 20px;
+    border: 1px solid #e4e0e0;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.cp-form-box{
+    font-size: 17px;
+    line-height: 27px;
+    color: black;
+    margin: 30px 0px;
+}
+
+.cp-form-line{
+    height:1px;
+    background:#d5dedf;
+    width:90%;
+    margin:0px auto;
+}
+
+
+.cp-form-box-file-input{
+    width: 250px;
+    height: 27px;
+    border-radius: 2px;
+    border: 1px solid #a8a1a1;
+}
+
+.cp-form-box-num-input{
+    width: 80px;
+    height: 27px;
+    border-radius: 2px;
+    border: 1px solid #a8a1a1;
+}
+.cp-console-title{
+    margin-left:20px;
+    font-size: 19px;
+    letter-spacing: 1.5px;
+    color: #867272;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 700;
+}
+
+.cp-console-area{
+    box-sizing: border-box;
+    margin: 10px 20px;
+    border: 1px solid  #dad0d0;
+    border-radius: 8px;
+}
+
+.cp-crawl-buttom-info{
+   /*  height: 30px; */
+    margin: 10px;
+}
+
+.cp-info-table th{
+    width: 120px;
+}
+.cp-info-table td{
+    border:1px solid #867272;
+    width: 45px;
+    height:28px;
+    text-align: center;
+}
+
+/*-----检索页面------*/
+.sp-form-area{
+    width: 100%;
+    padding:40px 30% 20px 10%;
+    box-sizing: border-box;
+    background: #fafafa;
+}
+
+.sp-result-info{
+    color:#929497;
+    font-size: 13px;
+    padding-left: 10%;
+    margin-top:15px;
+    margin-bottom: 20px;
+}
+
+.sp-result-area{
+    padding-left: 10%;
+    box-sizing: border-box;
+}
+
+.sp-pagination{
+    padding-left: 10%;
+    height: 80px;
+}
+/* .cp-console-table{
+    border:none;
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.cp-console-table thead{
+    table-layout: fixed;
+}
+
+.cp-console-table th{
+    height: 38px;
+    border: none;
+} */
+

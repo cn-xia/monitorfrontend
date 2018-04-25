@@ -1,0 +1,30 @@
+#app{
+    background:#fff;
+}
+
+#header{
+    width: 100%;
+    height: 40px;
+    background: #424f63;
+}
+
+*{
+	margin:0px;
+	padding: 0px;
+}
+
+/*-------滚动条样式--------*/
+*::-webkit-scrollbar {
+    width: 8px;    
+    height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(39, 109, 156, 0.829);
+}
+*::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
