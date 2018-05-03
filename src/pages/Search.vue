@@ -57,7 +57,7 @@
                     <el-button type="text"  style="font-size:16px;font-weight:600;" @click="removeAllFields()">清除所有字段</el-button>
                 </el-col>
                 <el-col :span="4">
-                    <el-button type="primary" plain size="medium" @click="getResult()">检 索</el-button>
+                    <el-button type="primary" plain size="medium" @click="getResult()" v-loading.fullscreen.lock="fullscreenLoading">检 索</el-button>
                 </el-col>
         </el-row>
       </div>
@@ -67,9 +67,7 @@
       <div class="sp-result-area">
           <el-row>
               <component :is="resultComp" v-for="rsUnit in rsUnits" :key=rsUnit.id
-                  :title = rsUnit.title
-                  :content = rsUnit.content
-                  :url = rsUnit.url>
+                  :content="rsUnit">
               </component>
           </el-row>
       </div>
@@ -104,6 +102,7 @@ export default {
                 musttheme:"关键字",
                 otheritems:[]
             },
+            fullscreenLoading: false,
             resInfoShow:false,
             pageinitionShow:false,
             rsNumStr:"",
@@ -159,10 +158,14 @@ export default {
                 
             });
             var _this = this;
+            this.fullscreenLoading = true;
             this.axios.post('/MonitorCenter'+serverpath.port_getResult,params).then(res=>{
                 console.log(res.data);
                 curResultList = res.data.data.resultList;
                 _this.handlePageChange(1)
+                this.fullscreenLoading = false;
+            }).catch(err=>{
+                this.fullscreenLoading = false;
             })
         },
         handleSizeChange(val){
@@ -188,10 +191,7 @@ export default {
             for (let index = low; index <= high; index++) {
                 const element = curResultList[index];
                 var unit = {};
-                unit.title = element.title;
-                unit.content = element.content;
-                unit.url = element.url;
-                this.rsUnits.push(unit);
+                this.rsUnits.push(element);
             }
         }
     }
@@ -199,5 +199,7 @@ export default {
 </script>
 
 <style>
-
+.sp-form-area {
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+}
 </style>

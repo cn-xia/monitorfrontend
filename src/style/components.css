@@ -19,24 +19,26 @@
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
-    font-size:17px;
-    color:#179edd;
     line-height: 20px;
     margin-bottom: 7px;
-
 }
-.result-unit-title span:hover{
+.result-unit-title a {
+    font-size:17px;
+    color:#179edd;
+}
+.result-unit-title:hover{
     cursor: pointer;
     text-decoration:underline;
 }
 
-.result-unit-website{
+.result-unit-website a{
     font-size: 13px;
     color: #30b9a7;  
     line-height: 20px;
+    text-decoration:none;
 }
 
-.result-unit-website span:hover{
+.result-unit-website a:hover{
     cursor: pointer;
     text-decoration:underline;
 }
