@@ -46,7 +46,6 @@
 .result-unit-text{
     font-size: 13px;
     line-height: 20px;
-    height: 60px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;

@@ -4,7 +4,7 @@
         <el-form ref="searchform" :model="searchform">
             <el-form-item>
                 <el-row :gutter="10">
-                    <el-col :span="18">
+                    <el-col :span="14">
                         <el-input v-model="searchform.mustword"></el-input>
                     </el-col>
                     <el-col :span="4">
@@ -31,7 +31,7 @@
                             </el-option>
                         </el-select>
                     </el-col>
-                    <el-col  :span="15">
+                    <el-col  :span="11">
                         <el-input v-model="unit.word"></el-input>
                     </el-col>
                     <el-col :span="4">
@@ -50,7 +50,7 @@
             </el-form-item>
         </el-form>
         <el-row>
-                <el-col :span="4" :offset="11">
+                <el-col :span="4">
                     <el-button type="text"  style="font-size:16px;font-weight:600;" @click="addFields()">+ 添加另一字段</el-button>
                 </el-col>
                 <el-col :span="4">
