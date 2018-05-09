@@ -57,7 +57,7 @@
                     <el-button type="text"  style="font-size:16px;font-weight:600;" @click="removeAllFields()">清除所有字段</el-button>
                 </el-col>
                 <el-col :span="4">
-                    <el-button type="primary" plain size="medium" @click="getResult()" v-loading.fullscreen.lock="fullscreenLoading">检 索</el-button>
+                    <el-button type="primary" plain size="medium" @click="getResult()">检 索</el-button>
                 </el-col>
         </el-row>
       </div>
@@ -144,6 +144,12 @@ export default {
                 this.searchform.mustword = "";
                 return;
             }
+            const loading = this.$loading({
+                lock: true,
+                text: 'Loading',
+                spinner: 'el-icon-loading',
+                background: 'transparent'
+            });
             let params = new FormData();
             params.append('input1',this.searchform.mustword);
             params.append('select1',this.searchform.musttheme);
@@ -158,14 +164,13 @@ export default {
                 
             });
             var _this = this;
-            this.fullscreenLoading = true;
             this.axios.post('/MonitorCenter'+serverpath.port_getResult,params).then(res=>{
                 console.log(res.data);
                 curResultList = res.data.data.resultList;
                 _this.handlePageChange(1)
-                this.fullscreenLoading = false;
+                loading.close();
             }).catch(err=>{
-                this.fullscreenLoading = false;
+                loading.close();
             })
         },
         handleSizeChange(val){
