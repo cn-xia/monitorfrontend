@@ -10,7 +10,7 @@
                 <a class="video-pic" v-if="content.videoUrl" :href="content.videoUrl" target="_blank"></a>
             </div>
             <div class="content-text">
-                {{content.content.trim()}}
+                {{content.content?content.content.trim():''}}
             </div>
         </div>
         <div class="result-unit-website">
