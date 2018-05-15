@@ -1,6 +1,6 @@
 <template>
   <div class="result-card">
-    <el-card class="box-card">
+    <div class="box-card">
         <h3 class="result-unit-title">
             <a :href="content.url" target="_blank" v-html="formatTitle(content.title)"></a>
         </h3>
@@ -16,7 +16,7 @@
         <div class="result-unit-website">
             <a :href="content.url" target="_blank">{{content.url}}</a>
         </div>
-    </el-card>
+    </div>
   </div>
 </template>
 
@@ -45,8 +45,16 @@ export default {
 </script>
 
 <style>
+.box-card {
+    background: #fff;
+    border-radius: 2px;
+    padding: 25px;
+    width: 549px;
+    line-height: 1.65;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
 .result-card {
-    width: 550px;
     margin-bottom: 15px;
 }
 .result-card a {
@@ -56,7 +64,7 @@ export default {
     color: #EA4335;
     font-style: normal;
 }
-.result-card:hover {
+.box-card:hover {
     transition: all 500ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }

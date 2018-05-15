@@ -1,7 +1,6 @@
 /*-----pages------*/
 
 .page-content{
-    height: 660px;
     box-sizing: border-box;
     padding: 30px 10px;
 }
@@ -86,7 +85,7 @@
 /*-----检索页面------*/
 .sp-form-area{
     width: 100%;
-    padding:40px 30% 20px 10%;
+    padding:40px 10%;
     box-sizing: border-box;
     background: #f8f8f8;
 }
@@ -100,7 +99,7 @@
 }
 
 .sp-result-area{
-    padding-left: 10%;
+    padding: 10px 10%;
     box-sizing: border-box;
 }
 
