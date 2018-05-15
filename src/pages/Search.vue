@@ -75,11 +75,9 @@
         <el-pagination
           background
           :current-page=curPage
-          :page-sizes="[6, 8, 10, 12]"
-          :page-size = pageSize
-          @size-change="handleSizeChange"
+          :page-size=pageSize
           @current-change="handlePageChange"
-          layout="sizes, prev, pager, next"
+          layout="prev, pager, next"
           :total=rsNum>
         </el-pagination>
       </div>
@@ -87,10 +85,9 @@
 </template>
 
 <script>
-
+import qs from 'qs'
 import {serverpath} from '../api'
-import ResultUnit from '../components/ResultUnit.vue'
-var curResultList = [];
+import ResultUnit from '../components/ResultUnit'
 export default {
     data(){
         return{
@@ -109,7 +106,7 @@ export default {
             rsUnits:[],
             curPage:1,
             rsNum:6,
-            pageSize:6
+            pageSize:10
         }
     },
     components:{
@@ -135,8 +132,8 @@ export default {
                 this.searchform.otheritems.splice(index,1);
             }
         },
-        getResult(){
-            if(this.searchform.mustword.match(/^[ ]*$/)){
+        getResult(isTurn){
+            if(!this.searchform.mustword.trim()){
                 this.$message({
                     message: '第一个字段不能为空',
                     type: 'warning'
@@ -150,54 +147,32 @@ export default {
                 spinner: 'el-icon-loading',
                 background: 'transparent'
             });
-            let params = new FormData();
-            params.append('input1',this.searchform.mustword);
-            params.append('select1',this.searchform.musttheme);
-            let count = 1;
-            this.searchform.otheritems.forEach(element => {
-                if(!element.word.match(/^[ ]*$/)){
-                    params.append("relation"+count,element.logic);
-                    params.append("input"+(count+1),element.word);
-                    params.append("select"+(count+1),element.theme);
-                    count++;
-                }
-                
-            });
-            var _this = this;
-            this.axios.post('/MonitorCenter'+serverpath.port_getResult,params).then(res=>{
-                console.log(res.data);
-                curResultList = res.data.data.resultList;
-                _this.handlePageChange(1)
+            if (!isTurn) this.curPage = 1;
+            const {mustword, musttheme} = this.searchform;
+            let params = {input1: mustword, select1: musttheme, pageIndex: this.curPage, pageSize: this.pageSize};
+            if (this.searchform.otheritems.length) {
+                this.searchform.otheritems.forEach((element, index) => {
+                    if(element.word.trim()){
+                        let count = index + 1;
+                        params["relation"+count] = element.logic;
+                        params["input"+(count+1)] = element.word;
+                        params["select"+(count+1)] = element.theme;
+                    }
+                });
+            }
+            this.axios.post('/MonitorCenter'+serverpath.port_getResult,qs.stringify(params)).then(res => {
+                const data = res.data.data;
+                this.rsUnits = data.resultList;
+                if (!(this.rsNum && isTurn)) this.rsNum = data.total;
+                this.pageinitionShow = !!data.total;
                 loading.close();
             }).catch(err=>{
                 loading.close();
             })
         },
-        handleSizeChange(val){
-            this.pageSize = val;
-            this.handlePageChange(this.curPage);
-        },
-        handlePageChange(val){
+        handlePageChange(val) {
             this.curPage = val;
-            let sum = curResultList.length;
-            this.rsNumStr = sum;
-            this.rsNum = sum;
-            this.resInfoShow = true;
-            this.pageinitionShow = true;
-
-            let flag = parseInt(sum/this.pageSize);
-            let low = (val-1)*this.pageSize;
-            if(val<flag){
-                var high = val*this.pageSize-1
-            }else{
-                var high = sum-1;
-            }
-            this.rsUnits = [];
-            for (let index = low; index <= high; index++) {
-                const element = curResultList[index];
-                var unit = {};
-                this.rsUnits.push(element);
-            }
+            this.getResult(true);
         }
     }
 }
